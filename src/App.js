@@ -3,6 +3,8 @@ import { Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
 import Pizza from './components/Pizza';
 import Conformation from './components/Confirmation';
+import axios from "axios";
+import * as yup from "yup";
 
 const formSchema = yup.object().shape({
   customer: yup
