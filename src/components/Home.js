@@ -27,6 +27,10 @@ const StyledWrapper = styled.div`
                     <h1>Your favorite food, delivered while coding</h1>
                     <Link to="/pizza"><button id="order-pizza">Pizza!</button></Link>
                 </StyledWrapper>
+                <div>
+                    <h3>Food Delivery Available!</h3>
+                </div>
             </div>
         )
     }
+    export default Home;
