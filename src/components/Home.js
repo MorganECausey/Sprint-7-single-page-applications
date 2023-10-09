@@ -1,7 +1,9 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import styled from 'styled-components';
+//import React and styled components 
 
+//define the styled components for a div
 const StyledWrapper = styled.div`
     background-image: url('');
     background-repeat: no-repeat;
@@ -13,6 +15,7 @@ const StyledWrapper = styled.div`
     border: double 8px red;
     `;
 
+//define a function that takes props as an argument
     function Home(props) {
         return (
             <div className="home-wrapper">
@@ -33,4 +36,6 @@ const StyledWrapper = styled.div`
             </div>
         )
     }
+
+    //export default
     export default Home;
