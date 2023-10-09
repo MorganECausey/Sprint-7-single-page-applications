@@ -13,7 +13,7 @@ const StyledSelect = styled.select`
 `;
 
 
-define a styled componenet for the div for the name
+//define a styled componenet for the div for the name
 const StyledName = styled.div`
     input{
         color: white;
