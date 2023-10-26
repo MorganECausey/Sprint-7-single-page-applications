@@ -22,10 +22,29 @@ function Confirmation(props) {
             <div className="order-details">
                 {orders.map(order =>{
                     return (
-                        
+                        <Orders key={order.id} details={order} />
                     )
                 })}
             </div>
         </StyledDiv>
     )
 }
+
+const StyledDiv = styled.div`
+    .reset-button{
+            align-content: center;
+            display: flex;
+            justify-content: center;
+            margin: 1rem;
+    }
+    .order-details{
+        margin: 0 auto;
+        max-width: 30rem;
+        position: relative;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 10rem;
+        padding-bottom: 3rem
+    }
+    `;
+export default Confirmation;
