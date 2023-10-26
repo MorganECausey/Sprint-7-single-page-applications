@@ -9,7 +9,7 @@ const StyledSelect = styled.select`
     width: 15rem;
     background-color: black;
     margin-left: 1rem;
-    neight: 2rem;
+    height: 2rem;
 `;
 
 
@@ -24,29 +24,35 @@ const StyledName = styled.div`
 //functional element for the pizza form, takes props as an argument
 function Pizza(props) {
     const {
-        values, submit, change, disabled, errors, reset
+        values, 
+        submit, 
+        change, 
+        disabled, 
+        errors, 
+        reset
     } = props;
     //destructure props to extract specific properties
 
-    const history = useHistory()//history object for routing
-        const routeToConfirm = () => {
-            history.push('/confirmation')
-        }
-//function to navigate ti the confirmation page
+    const history = useHistory();//history object for routing
+        
+    const routeToConfirm = () => {
+            history.push('/confirmation');
+    }
+//function to navigate to the confirmation page
 
 //function to handle form submission, include a prevent for default form submission behavior
     const onSubmit = evt => {
-        evt.preventDefault()
-        submit()//call the submit function from props
-        reset()//call the reset function from props
-        routeToConfirm()//navigate to the confirmation page
+        evt.preventDefault();
+        submit();//call the submit function from props
+        reset();//call the reset function from props
+        routeToConfirm();//navigate to the confirmation page
     }
 
     //function to handle input changes
     const onChange = evt => {
         const {name, value, checked, type} = evt.target; //extract properties from the input element
-        const valueToUse = type === "checkbox" ? checked : value //determine the value based on the input type
-        change(name, valueToUse) //call the change function from props to update the state
+        const valueToUse = type === "checkbox" ? checked : value; //determine the value based on the input type
+        change(name, valueToUse); //call the change function from props to update the state
     }
 
     //UI code in JSX, include a size, sauce, topping, extra cheese, gluten free, and special instructions
@@ -55,14 +61,22 @@ function Pizza(props) {
             <header>
                 <h1>Bloomtech Eats</h1>
                 <div className="nav-links">
-                    <Link to="/"><button onClick={reset}>Home</button></Link>
+                    <Link to="/">
+                        <button onClick={reset}>Home</button>
+                    </Link>
                     <button>Help</button>
                 </div>
             </header>
             <form className="pizza-form" id="pizza-form" onSubmit={onSubmit}>
                 <div className="pizza-container">
                     <h3>Build your Own Pizza</h3>
-                    <div className="name"><label><h3>Enter the name for the order</h3></label></div>
+
+                    <div className="name">
+                        <label>
+                            <h3>Enter the name for the order</h3>
+                        </label>
+                    </div>
+
                     <StyledName className="name-wrapper">
                         <input
                         id="name-input"
@@ -75,9 +89,12 @@ function Pizza(props) {
                     </StyledName>
 
                     <div className="size">
-                        <label for="size-select"><h3>Size Choices</h3></label>
+                        <label htmlFor="size-select">
+                            <h3>Size Choices</h3>
+                        </label>
                         <p>Required</p>
                     </div>
+
                     <div className="select-wrapper">
                         <StyledSelect
                         id="size-dropdown"
@@ -204,12 +221,14 @@ function Pizza(props) {
                             value={values.special}
                             />
                         </div>
+                    </div>
+
                     <div>{errors.size}</div>
                     <div>{errors.sauce}</div>
                     <div>{errors.customer}</div>
-                    <button className="submit" id="order-button" disabled={disabled}>submit</button>
-                
-            </div>
+                    <button className="submit" id="order-button" disabled={disabled}>
+                        Submit
+                    </button>
             </form>
         </div>
     )

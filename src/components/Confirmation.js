@@ -19,10 +19,15 @@ function Confirmation(props) {
                     <button>Help</button>
                 </div>
             </header>
+
             <div className="order-success">
                 <h2>Success! Your order is on the way!</h2>
             </div>
-            <div className="reset-button"><button onClick={clear}>Clear Orders</button></div>
+
+            <div className="reset-button">
+                <button onClick={clear}>Clear Orders</button>
+            </div>
+
             <div className="order-details">
                 {orders.map(order =>{
                     return (
@@ -36,7 +41,7 @@ function Confirmation(props) {
 //define styled components for reset and details
 const StyledDiv = styled.div`
     .reset-button{
-            align-content: center;
+
             display: flex;
             justify-content: center;
             margin: 1rem;

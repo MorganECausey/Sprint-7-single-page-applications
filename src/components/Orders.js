@@ -4,10 +4,9 @@ import styled from 'styled-components';
 
 //create a div element using back ticks. Use CSS syntax
 const StyledDiv = styled.div`
-    border-bottom: solid black;
-    border-right: solid black;
+    border: 1px solid black;
     border-radius: 25px;
-    background-color: rgb(128, 128, 128, 0.5);
+    background-color: rgba(128, 128, 128, 0.5);
     
     h2 {
         text-align: center;
@@ -38,7 +37,7 @@ function Orders({details}) {
                     {constants.map((topping,idx) => {
                         if(details[topping] === true){
                             return(
-                                <li>{topping}</li>
+                                <li key={idx}>{topping}</li>
                             )
                         }
                     })}
@@ -46,7 +45,7 @@ function Orders({details}) {
             </div>
             <p>{details.gluten ? "Gluten Free Crust" : "Regular Crust"}</p>
             <p>Special Instructions</p>
-            <p>{details.special === "" ? "none" : details.special}</p>
+            <p>{details.special || "None"}</p>
             </div>
         </StyledDiv>
     )
