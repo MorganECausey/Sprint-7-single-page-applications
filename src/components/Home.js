@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 //import React and styled components 
 
@@ -12,11 +12,11 @@ const StyledWrapper = styled.div`
     display: flex;
     flex-direction: center;
     padding: 10%;
-    border: double 8px red;
+    border: 8px double red;
     `;
 
 //define a function that takes props as an argument
-    function Home(props) {
+    function Home() {
         return (
             <div className="home-wrapper">
                 <header>

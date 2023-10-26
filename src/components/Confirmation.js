@@ -2,11 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Orders from './Orders';
 import styled from "styled-components";
+//import dependancies
 
+//define a function that takes props as a parameter
 function Confirmation(props) {
+    //destructure the orders and clear props from the input parameter
     const {orders, clear} = props
-
+    //return JSX for rendering and confirmation
     return (
+        //apply styled components
         <StyledDiv className="confirmation-wrapper">
             <header>
                 <h1>Bloomtech Eats</h1>
@@ -29,7 +33,7 @@ function Confirmation(props) {
         </StyledDiv>
     )
 }
-
+//define styled components for reset and details
 const StyledDiv = styled.div`
     .reset-button{
             align-content: center;
@@ -47,4 +51,5 @@ const StyledDiv = styled.div`
         padding-bottom: 3rem
     }
     `;
+    //export component as the default
 export default Confirmation;
