@@ -39,9 +39,27 @@ const formSchema = yup.object().shape({
 })
 
 //create inital form values for the form
-
+const initialFormValues = {
+  customer: "",
+  size: "",
+  sauce: "",
+  pepperoni: false, 
+  sausage: false,
+  bacon: false, 
+  ham: false, 
+  extraCheese: false, 
+  special: "",
+  gluten: false
+}
 
 //create inital for value errors
+const initialFormErrors = {
+  size: "",
+  sauce: "",
+  customer: ""
+}
+
+const initialOrders = []
 
 
 //create the inital disabled constant
