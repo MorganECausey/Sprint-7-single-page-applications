@@ -63,23 +63,67 @@ const initialOrders = []
 
 
 //create the inital disabled constant
-
+const initialDisabled = true;
 
 //create the inital states for the form values, disabled state, for errors, and orders
 const App = () => {
-
+  const [orders, setOrders] = useState(initialOrders)
+  const [formValues, setFormValues] = useState(initialFormValues)
+  const [formErrors, setFormErrors] = useState(initialFormErrors)
+  const [disabled, setDisabled] = useState(initialDisabled)
 
 //create reset function
-
+function reset(){
+  setFormValues(initialFormValues)
+}
 //create a clear order function
-
-//create a calidation variable
-
+function clearOrders(){
+  setOrders(initialOrders)
+}
+//create a verification variable
+const validate = (name, value) => {
+  yup.reach(formSchema, name)
+  .validate(value)
+  .then(() => setFormErrors({...formErrors, [name]: ""}))
+  .catch(err => setFormErrors({...formErrors, [name]: err.errors[0]}))
+}
+useEffect(() => {
+  formErrors.isValid(formValues).then(valid => {
+    setDisabled(!valid)
+  })
+}, [formValues])
 //create a state to update values as entered
-
+const updateForm = (inputName, inputValue) => {
+  validate(inputName, inputValue);
+  setFormValues({...formValues, [inputName]:inputValue})
+}
 //create a state to post the orders to a new page
-
+const postNewOrder = newOrder => {
+  axios.post('https://reqres.in/api/orders', newOrder)
+  .then(({data}) => {
+    setOrders([data,...orders])
+    console.log(data)
+  })
+  .catch(err => console.error(err))
+  .finally(() => (setFormValues(initialFormValues)))
+}
 //create a state to store order data 
+const submitOrder = () => {
+    const newOrder = {
+      customer: formValues.customer, 
+      size: formValues.size,
+      sauce: formValues.sauce,
+      pepperoni: formValues.pepperoni,
+      sausage: formValues.sausage,
+      bacon: formValues.bacon,
+      ham: formValues.ham,
+      extraCheese: formValues.extraCheese,
+      special: formValues.special,
+      gluten: formValues.gluten
+    }
+    setFormValues(initialFormValues)
+    postNewOrder(newOrder)
+}
 return (
     <>
       <h1>Lambda Eats</h1>
