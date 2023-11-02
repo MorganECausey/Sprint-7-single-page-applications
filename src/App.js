@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
 import Pizza from './components/Pizza';
-import Conformation from './components/Confirmation';
+import Confirmation from './components/Confirmation';
 import axios from "axios";
 import * as yup from "yup";
 
@@ -85,10 +85,10 @@ const validate = (name, value) => {
   yup.reach(formSchema, name)
   .validate(value)
   .then(() => setFormErrors({...formErrors, [name]: ""}))
-  .catch(err => setFormErrors({...formErrors, [name]: err.errors[0]}))
+  .catch(err => setFormErrors({...formErrors, [name]: err.errors[0] }))
 }
 useEffect(() => {
-  formErrors.isValid(formValues).then(valid => {
+  formSchema.isValid(formValues).then(valid => {
     setDisabled(!valid)
   })
 }, [formValues])
@@ -101,11 +101,11 @@ const updateForm = (inputName, inputValue) => {
 const postNewOrder = newOrder => {
   axios.post('https://reqres.in/api/orders', newOrder)
   .then(({data}) => {
-    setOrders([data,...orders])
-    console.log(data)
+    setOrders([data,...orders]);
+    console.log(data);
   })
   .catch(err => console.error(err))
-  .finally(() => (setFormValues(initialFormValues)))
+  .finally(() => reset());
 }
 //create a state to store order data 
 const submitOrder = () => {
@@ -125,10 +125,23 @@ const submitOrder = () => {
     postNewOrder(newOrder)
 }
 return (
-    <>
-      <h1>Lambda Eats</h1>
-      <p>You can remove this code and create your own header</p>
-    </>
+    <Switch>
+      <Route exact path="/">
+        <Home />
+      </Route>
+      <Route path="/pizza">
+        <Pizza
+          values={formValues}
+          change={updateForm}
+          submit={submitOrder}
+          disabled={disabled}
+          errors={formErrors}
+          reset={reset}/>
+        </Route>
+        <Route path="/confirmation">
+          <Confirmation orders={orders} clear={clearOrders}/>
+        </Route>
+    </Switch>
   );
 };
 export default App;
